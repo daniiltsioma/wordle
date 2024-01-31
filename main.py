@@ -67,6 +67,17 @@ for ltr in letters:
 back_button = Button(game_window, 'Back', 0,
                      offset_left, offset_top, 30, 30, 10)
 
+squares = []
+
+offset_top = 20
+for i in range(6):
+    offset_left = 10
+    for j in range(5):
+        squares.append(pygame.draw.rect(game_window, gray,
+                                        (offset_left, offset_top, 41, 41), 1))
+        offset_left += 51
+    offset_top += 51
+
 running = True
 while running:
     # handle events
