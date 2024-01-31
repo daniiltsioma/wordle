@@ -22,9 +22,6 @@ lightgray = pygame.Color(230, 232, 234)
 # initialize pygame
 pygame.init()
 
-# button font
-smallfont = pygame.font.SysFont('times new roman', 20)
-
 
 # initialize pygame window
 game_window = pygame.display.set_mode((window_x, window_y))
@@ -33,28 +30,42 @@ pygame.display.set_caption("Wordle")
 # refresh rate
 fps = pygame.time.Clock()
 
-letters = 'qwertyuiop'
+
 buttons: list[Button] = []
 
+# keyboard top row
+letters = 'qwertyuiop'
 offset_left = 10
+offset_top = window_y - 50 - (10 * 2) - (30 * 3)
 for ltr in letters:
     buttons.append(Button(game_window, ltr, 0, offset_left,
-                   200, 20, 30, smallfont))
+                   offset_top, 20, 30, 20))
     offset_left += 25
 
+# keyboard mid row
 letters = 'asdfghjkl'
 offset_left = 25
+offset_top += 40
 for ltr in letters:
     buttons.append(Button(game_window, ltr, 0, offset_left,
-                   235, 20, 30, smallfont))
+                   offset_top, 20, 30, 20))
     offset_left += 25
 
+# keyboard bottom row
+offset_left = 15
+offset_top += 40
+enter_button = Button(game_window, 'Enter', 0,
+                      offset_left, offset_top, 30, 30, 10)
+offset_left += 35
+
 letters = 'zxcvbnm'
-offset_left = 50
 for ltr in letters:
     buttons.append(Button(game_window, ltr, 0, offset_left,
-                   270, 20, 30, smallfont))
+                   offset_top, 20, 30, 20))
     offset_left += 25
+
+back_button = Button(game_window, 'Back', 0,
+                     offset_left, offset_top, 30, 30, 10)
 
 running = True
 while running:
@@ -66,6 +77,8 @@ while running:
     # q_button.render(game_window)
     for btn in buttons:
         btn.render(game_window)
+    enter_button.render(game_window)
+    back_button.render(game_window)
 
     mouse = pygame.mouse.get_pos()
 

@@ -10,6 +10,7 @@ lightgray = pygame.Color(230, 232, 234)
 
 
 class Button():
+
     themes = [
         (lightgray, black),             # default
         (green, white),                 # green
@@ -17,7 +18,7 @@ class Button():
         (gray, white),                  # gray
     ]
 
-    def __init__(self, window, text, theme, x, y, width, height, font):
+    def __init__(self, window, text, theme, x, y, width, height, font_size):
         self.text = text
         self.window = window
         self.x = x
@@ -25,7 +26,7 @@ class Button():
         self.width = width
         self.height = height
         self.theme = self.themes[theme]
-        self.font = font
+        self.font = pygame.font.SysFont('times new roman', font_size)
 
     def render(self, window):
         pygame.draw.rect(window, self.theme[0], [
