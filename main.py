@@ -16,5 +16,15 @@ gray = pygame.Color(120, 124, 127)
 pygame.init()
 
 # initialize pygame window
-pygame.display.set_caption("Wordle")
 game_window = pygame.display.set_mode((window_x, window_y))
+pygame.display.set_caption("Wordle")
+
+running = True
+while running:
+    # handle events
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    pygame.display.flip()
+pygame.quit()
