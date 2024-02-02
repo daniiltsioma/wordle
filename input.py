@@ -35,13 +35,18 @@ class Input:
 
     def check(self, word, user_input):
         letter_set = set()
+        letter_themes = dict()
         for l in word:
             letter_set.add(l)
         start = self.current - 5
         for i in range(5):
             if user_input[i] == word[i]:
                 self.squares[start + i].set_theme(1)
+                letter_themes[user_input[i]] = 1
             elif user_input[i] in letter_set:
                 self.squares[start + i].set_theme(2)
+                letter_themes[user_input[i]] = 2
             else:
                 self.squares[start + i].set_theme(3)
+                letter_themes[user_input[i]] = 3
+        return letter_themes

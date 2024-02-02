@@ -47,7 +47,7 @@ keyboard.create()
 keyboard.render()
 
 # word
-word = "HELLO"
+word = "DANIK"
 # current input
 input_str = []
 
@@ -78,7 +78,8 @@ while running:
                     squares.enter(command)
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
-                squares.check(word, ''.join(input_str))
+                letter_themes = squares.check(word, ''.join(input_str))
+                keyboard.apply_themes(letter_themes)
                 input_str.clear()
             if event.key == pygame.K_BACKSPACE:
                 if len(input_str) > 0:

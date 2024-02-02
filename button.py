@@ -33,6 +33,9 @@ class Button():
         self.rect = pygame.draw.rect(self.window, self.theme[0], [
             self.x, self.y, self.width, self.height])
 
+        self.render_text()
+
+    def render_text(self):
         # render text in this font
         text = self.font.render(self.text, True, self.theme[1])
 
@@ -47,3 +50,13 @@ class Button():
     def check_click(self, pos):
         if self.rect.collidepoint(pos):
             return self.text
+
+    def is_letter(self):
+        return self.text != 'Enter' and self.text != 'Back'
+
+    def set_theme(self, index):
+        self.theme = self.themes[index]
+        self.render()
+
+    def get_text(self):
+        return self.text

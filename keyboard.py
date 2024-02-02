@@ -53,3 +53,9 @@ class Keyboard:
             command = btn.check_click(pos)
             if command:
                 return command
+
+    def apply_themes(self, letter_themes):
+        for btn in self.buttons:
+            char = btn.get_text()
+            if char in letter_themes:
+                btn.set_theme(letter_themes[char])
