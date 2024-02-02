@@ -34,16 +34,20 @@ class Input:
         self.squares[self.current].clear()
 
     def check(self, word, user_input):
-        letter_set = set()
+        letter_dict = dict()
         letter_themes = dict()
         for l in word:
-            letter_set.add(l)
+            if l in letter_dict:
+                letter_dict[l] += 1
+            else:
+                letter_dict[l] = 1
         start = self.current - 5
+        letter_apps = dict()
         for i in range(5):
             if user_input[i] == word[i]:
                 self.squares[start + i].set_theme(1)
                 letter_themes[user_input[i]] = 1
-            elif user_input[i] in letter_set:
+            elif user_input[i] in letter_dict and user_input[i] in letter_apps and letter_apps[user_input[i]] < letter_dict[user_input[i]]:
                 self.squares[start + i].set_theme(2)
                 letter_themes[user_input[i]] = 2
             else:
