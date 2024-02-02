@@ -37,11 +37,16 @@ keyboard.create()
 # render keyboard
 keyboard.render()
 
+# for quick random search
 words = []
+# for quick checking of the dictionary
+word_set = set()
 
 lines = open('words.txt').read().splitlines()
 for l in lines:
-    words.append(l.upper())
+    word = l.upper()
+    words.append(word)
+    word_set.add(word)
 
 # word
 word = random.choice(words)
@@ -63,12 +68,20 @@ while running:
             if not command:                     # click not on buttons
                 pass
             elif command == 'Enter':            # mouse click on Enter
-                if len(input_str) == 5:
-                    # get letter colors
-                    letter_themes = squares.check(word, ''.join(input_str))
-                    # apply colors to keyboard
-                    keyboard.apply_themes(letter_themes)
-                    input_str.clear()
+                print('enter click')
+                input_word = ''.join(input_str)
+                if len(input_word) == 5:
+                    if input_word in word_set:
+                        print(word, 'in word set')
+                        # get letter colors
+                        letter_themes = squares.check(word, ''.join(input_str))
+                        # apply colors to keyboard
+                        keyboard.apply_themes(letter_themes)
+                        input_str.clear()
+                    else:
+                        print("Word not in the list")
+                else:
+                    print("Too short")
             elif command == 'Back':
                 if len(input_str) > 0:
                     input_str.pop()
