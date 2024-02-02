@@ -9,21 +9,21 @@ class Keyboard:
 
     def create(self):
         # keyboard top row
-        letters = 'qwertyuiop'
+        letters = 'QWERTYUIOP'
         offset_left = 10
         offset_top = self.window.get_height() - 50 - (10 * 2) - (30 * 3)
         for ltr in letters:
             self.buttons.append(Button(self.window, ltr, 0, offset_left,
-                                       offset_top, 20, 30, 20))
+                                       offset_top, 20, 30, 16))
             offset_left += 25
 
         # keyboard mid row
-        letters = 'asdfghjkl'
+        letters = 'ASDFGHJKL'
         offset_left = 25
         offset_top += 40
         for ltr in letters:
             self.buttons.append(Button(self.window, ltr, 0, offset_left,
-                                       offset_top, 20, 30, 20))
+                                       offset_top, 20, 30, 16))
             offset_left += 25
 
         # keyboard bottom row
@@ -34,10 +34,10 @@ class Keyboard:
         offset_left += 35
         self.buttons.append(enter_button)
 
-        letters = 'zxcvbnm'
+        letters = 'ZXCVBNM'
         for ltr in letters:
             self.buttons.append(Button(self.window, ltr, 0, offset_left,
-                                       offset_top, 20, 30, 20))
+                                       offset_top, 20, 30, 16))
             offset_left += 25
 
         back_button = Button(self.window, 'Back', 0,

@@ -73,6 +73,15 @@ while running:
                 if len(input_str) < 5:
                     input_str.append(command)
                     squares.enter(command)
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_BACKSPACE:
+                if len(input_str) > 0:
+                    input_str.pop()
+                    squares.back()
+            if 97 <= event.key <= 122:
+                if len(input_str) < 5:
+                    input_str.append(event.unicode.upper())
+                    squares.enter(event.unicode.upper())
 
     pygame.display.update()
 
