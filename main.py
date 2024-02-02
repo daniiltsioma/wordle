@@ -14,9 +14,6 @@ from colors import colors
 window_x = 265
 window_y = 600
 
-# set screen refresh rate
-screen_update = 30
-
 # initialize pygame
 pygame.init()
 
@@ -134,7 +131,5 @@ while running:
                     squares.enter(event.unicode.upper())
 
     pygame.display.update()
-
-    fps.tick(screen_update)
 
 pygame.quit()
