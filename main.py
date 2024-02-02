@@ -54,6 +54,30 @@ word = random.choice(words)
 input_str = []
 print(word)
 
+
+def handle_enter():
+    input_word = ''.join(input_str).upper()
+    print(input_word)
+    if len(input_word) == 5:
+        if input_word in word_set:
+            print(word, 'in word set')
+            # get letter colors
+            letter_themes = squares.check(word, ''.join(input_str))
+            # apply colors to keyboard
+            keyboard.apply_themes(letter_themes)
+            input_str.clear()
+        else:
+            print("Word not in the list")
+    else:
+        print("Too short")
+
+
+def handle_backspace():
+    if len(input_str) > 0:
+        input_str.pop()
+        squares.back()
+
+
 running = True
 while running:
 
@@ -68,38 +92,18 @@ while running:
             if not command:                     # click not on buttons
                 pass
             elif command == 'Enter':            # mouse click on Enter
-                print('enter click')
-                input_word = ''.join(input_str)
-                if len(input_word) == 5:
-                    if input_word in word_set:
-                        print(word, 'in word set')
-                        # get letter colors
-                        letter_themes = squares.check(word, ''.join(input_str))
-                        # apply colors to keyboard
-                        keyboard.apply_themes(letter_themes)
-                        input_str.clear()
-                    else:
-                        print("Word not in the list")
-                else:
-                    print("Too short")
+                handle_enter()
             elif command == 'Back':
-                if len(input_str) > 0:
-                    input_str.pop()
-                    squares.back()
+                handle_backspace()
             else:
                 if len(input_str) < 5:
                     input_str.append(command)
                     squares.enter(command)
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
-                if len(input_str) == 5:
-                    letter_themes = squares.check(word, ''.join(input_str))
-                    keyboard.apply_themes(letter_themes)
-                    input_str.clear()
+                handle_enter()
             if event.key == pygame.K_BACKSPACE:
-                if len(input_str) > 0:
-                    input_str.pop()
-                    squares.back()
+                handle_backspace()
             if 97 <= event.key <= 122:
                 if len(input_str) < 5:
                     input_str.append(event.unicode.upper())
