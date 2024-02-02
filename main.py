@@ -53,7 +53,6 @@ for l in lines:
 word = random.choice(words)
 # current input
 input_str = []
-print(word)
 
 # track attempts
 attempts = 0
@@ -82,7 +81,6 @@ def show_message(text):
 def handle_enter():
     valid = False
     input_word = ''.join(input_str).upper()
-    print(input_word)
     if len(input_word) == 5:
         if input_word in word_set:
             valid = True
@@ -137,7 +135,6 @@ while running:
                 complete, valid = handle_enter()
                 if valid:
                     attempts += 1
-                print(attempts)
                 if attempts == 6:
                     show_message("Word: " + word)
             if event.key == pygame.K_BACKSPACE:
