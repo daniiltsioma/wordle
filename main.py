@@ -37,10 +37,14 @@ keyboard.create()
 # render keyboard
 keyboard.render()
 
+words = []
+
 lines = open('words.txt').read().splitlines()
+for l in lines:
+    words.append(l.upper())
 
 # word
-word = random.choice(lines).upper()
+word = random.choice(words)
 # current input
 input_str = []
 print(word)
