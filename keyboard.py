@@ -47,3 +47,9 @@ class Keyboard:
     def render(self):
         for btn in self.buttons:
             btn.render()
+
+    def find_button(self, pos):
+        for btn in self.buttons:
+            command = btn.check_click(pos)
+            if command:
+                return command

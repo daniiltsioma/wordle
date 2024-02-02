@@ -27,10 +27,11 @@ class Button():
         self.height = height
         self.theme = self.themes[theme]
         self.font = pygame.font.SysFont('times new roman', font_size)
+        self.rect = None
 
     def render(self):
-        pygame.draw.rect(self.window, self.theme[0], [
-                         self.x, self.y, self.width, self.height])
+        self.rect = pygame.draw.rect(self.window, self.theme[0], [
+            self.x, self.y, self.width, self.height])
 
         # render text in this font
         text = self.font.render(self.text, True, self.theme[1])
@@ -42,3 +43,7 @@ class Button():
         text_top = self.y + (self.height - text_height) / 2
 
         self.window.blit(text, (text_left, text_top))
+
+    def check_click(self, pos):
+        if self.rect.collidepoint(pos):
+            return self.text

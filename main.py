@@ -41,19 +41,29 @@ squares.draw()
 keyboard = Keyboard(game_window)
 # create keyboard buttons
 keyboard.create()
+# render keyboard
+keyboard.render()
 
+# app input
+input = []
 
 running = True
 while running:
+
     # handle events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-
-    # render keyboard
-    keyboard.render()
-
-    mouse = pygame.mouse.get_pos()
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            pos = pygame.mouse.get_pos()
+            # handle mouse clicks on keyboard
+            command = keyboard.find_button(pos)
+            if not command:
+                pass
+            elif command == 'Back':
+                input.pop()
+            else:
+                input.append(command)
 
     pygame.display.update()
 
