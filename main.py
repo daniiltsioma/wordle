@@ -2,7 +2,6 @@
 import pygame
 
 # components
-from button import Button
 from keyboard import Keyboard
 from input import Input
 
@@ -13,17 +12,8 @@ window_y = 600
 # set screen refresh rate
 screen_update = 30
 
-# set colors
-black = pygame.Color(0, 0, 0)
-white = pygame.Color(255, 255, 255)
-green = pygame.Color(108, 169, 101)
-yellow = pygame.Color(200, 182, 83)
-gray = pygame.Color(120, 124, 127)
-lightgray = pygame.Color(230, 232, 234)
-
 # initialize pygame
 pygame.init()
-
 
 # initialize pygame window
 game_window = pygame.display.set_mode((window_x, window_y))
@@ -64,9 +54,11 @@ while running:
             command = keyboard.find_button(pos)
             if not command:                     # click not on buttons
                 pass
-            elif command == 'Enter':
+            elif command == 'Enter':            # mouse click on Enter
                 if len(input_str) == 5:
+                    # get letter colors
                     letter_themes = squares.check(word, ''.join(input_str))
+                    # apply colors to keyboard
                     keyboard.apply_themes(letter_themes)
                     input_str.clear()
             elif command == 'Back':

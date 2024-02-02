@@ -1,19 +1,16 @@
+# libraries
 import pygame
 
-black = pygame.Color(0, 0, 0)
-white = pygame.Color(255, 255, 255)
-green = pygame.Color(108, 169, 101)
-yellow = pygame.Color(200, 182, 83)
-gray = pygame.Color(120, 124, 127)
-lightgray = pygame.Color(230, 232, 234)
+# additional files
+from colors import colors
 
 
 class Square:
     themes = [
-        (0, gray, white),                  # default
-        (1, green, white),                 # green
-        (2, yellow, white),                # yellow
-        (3, gray, white),                  # gray
+        (0, colors['gray'], colors['white']),                  # default
+        (1, colors['green'], colors['white']),                 # green
+        (2, colors['yellow'], colors['white']),                # yellow
+        (3, colors['gray'], colors['white']),                  # gray
     ]
 
     def __init__(self, window, x, y, width, height, theme):

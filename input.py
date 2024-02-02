@@ -1,8 +1,5 @@
-import pygame
-
+# components
 from square import Square
-
-gray = pygame.Color(120, 124, 127)
 
 
 class Input:

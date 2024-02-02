@@ -1,21 +1,17 @@
 # libraries
 import pygame
 
-black = pygame.Color(0, 0, 0)
-white = pygame.Color(255, 255, 255)
-green = pygame.Color(108, 169, 101)
-yellow = pygame.Color(200, 182, 83)
-gray = pygame.Color(120, 124, 127)
-lightgray = pygame.Color(230, 232, 234)
+# additional files
+from colors import colors
 
 
 class Button():
 
     themes = [
-        (lightgray, black),             # default
-        (green, white),                 # green
-        (yellow, white),                # yellow
-        (gray, white),                  # gray
+        (colors['lightgray'], colors['black']),             # default
+        (colors['green'], colors['white']),                 # green
+        (colors['yellow'], colors['white']),                # yellow
+        (colors['gray'], colors['white']),                  # gray
     ]
 
     def __init__(self, window, text, theme, x, y, width, height, font_size):
