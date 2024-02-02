@@ -1,10 +1,14 @@
 # libraries
 import pygame
 import random
+import time
 
 # components
 from keyboard import Keyboard
 from input import Input
+
+# additional files
+from colors import colors
 
 # set window dimensions
 window_x = 265
@@ -55,24 +59,44 @@ input_str = []
 print(word)
 
 
+def clear_message():
+    surf = pygame.Surface((game_window.get_width(), 40), masks=(0, 0, 0))
+    game_window.blit(surf, (0, 400))
+
+
+def show_message(text):
+    clear_message()
+    font = pygame.font.SysFont('times new roman', 20)
+    text_rendered = font.render(text, True, colors['white'])
+
+    text_width = text_rendered.get_width()
+
+    text_left = (game_window.get_width() - text_width) / 2
+    text_top = 400
+
+    game_window.blit(text_rendered, (text_left, text_top))
+
+
 def handle_enter():
     input_word = ''.join(input_str).upper()
     print(input_word)
     if len(input_word) == 5:
         if input_word in word_set:
-            print(word, 'in word set')
             # get letter colors
-            letter_themes = squares.check(word, ''.join(input_str))
+            correct, letter_themes = squares.check(word, ''.join(input_str))
             # apply colors to keyboard
             keyboard.apply_themes(letter_themes)
             input_str.clear()
+            if correct:
+                show_message('Great job!')
         else:
-            print("Word not in the list")
+            show_message('Word not in the list')
     else:
-        print("Too short")
+        show_message('Too short')
 
 
 def handle_backspace():
+    clear_message()
     if len(input_str) > 0:
         input_str.pop()
         squares.back()
