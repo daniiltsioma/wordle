@@ -46,6 +46,8 @@ keyboard.create()
 # render keyboard
 keyboard.render()
 
+# word
+word = "HELLO"
 # current input
 input_str = []
 
@@ -63,6 +65,7 @@ while running:
             if not command:
                 pass
             elif command == 'Enter':
+                print("Enter")
                 pass
                 # squares.enter(input)
             elif command == 'Back':
@@ -74,6 +77,9 @@ while running:
                     input_str.append(command)
                     squares.enter(command)
         if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RETURN:
+                squares.check(word, ''.join(input_str))
+                input_str.clear()
             if event.key == pygame.K_BACKSPACE:
                 if len(input_str) > 0:
                     input_str.pop()

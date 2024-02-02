@@ -17,7 +17,7 @@ class Input:
             offset_left = 10
             for j in range(5):
                 self.squares.append(
-                    Square(self.window, offset_left, offset_top, 41, 41, gray))
+                    Square(self.window, offset_left, offset_top, 41, 41, 0))
                 offset_left += 51
             offset_top += 51
 
@@ -32,3 +32,16 @@ class Input:
     def back(self):
         self.current -= 1
         self.squares[self.current].clear()
+
+    def check(self, word, user_input):
+        letter_set = set()
+        for l in word:
+            letter_set.add(l)
+        start = self.current - 5
+        for i in range(5):
+            if user_input[i] == word[i]:
+                self.squares[start + i].set_theme(1)
+            elif user_input[i] in letter_set:
+                self.squares[start + i].set_theme(2)
+            else:
+                self.squares[start + i].set_theme(3)
