@@ -3,6 +3,7 @@ import pygame
 
 # components
 from button import Button
+from keyboard import Keyboard
 
 # set window dimensions
 window_x = 265
@@ -32,40 +33,8 @@ fps = pygame.time.Clock()
 
 
 buttons: list[Button] = []
-
-# keyboard top row
-letters = 'qwertyuiop'
-offset_left = 10
-offset_top = window_y - 50 - (10 * 2) - (30 * 3)
-for ltr in letters:
-    buttons.append(Button(game_window, ltr, 0, offset_left,
-                   offset_top, 20, 30, 20))
-    offset_left += 25
-
-# keyboard mid row
-letters = 'asdfghjkl'
-offset_left = 25
-offset_top += 40
-for ltr in letters:
-    buttons.append(Button(game_window, ltr, 0, offset_left,
-                   offset_top, 20, 30, 20))
-    offset_left += 25
-
-# keyboard bottom row
-offset_left = 15
-offset_top += 40
-enter_button = Button(game_window, 'Enter', 0,
-                      offset_left, offset_top, 30, 30, 10)
-offset_left += 35
-
-letters = 'zxcvbnm'
-for ltr in letters:
-    buttons.append(Button(game_window, ltr, 0, offset_left,
-                   offset_top, 20, 30, 20))
-    offset_left += 25
-
-back_button = Button(game_window, 'Back', 0,
-                     offset_left, offset_top, 30, 30, 10)
+keyboard = Keyboard(game_window)
+keyboard.create()
 
 squares = []
 
@@ -86,10 +55,11 @@ while running:
             running = False
 
     # q_button.render(game_window)
-    for btn in buttons:
-        btn.render(game_window)
-    enter_button.render(game_window)
-    back_button.render(game_window)
+    # for btn in buttons:
+    #     btn.render(game_window)
+    # enter_button.render(game_window)
+    # back_button.render(game_window)
+    keyboard.render()
 
     mouse = pygame.mouse.get_pos()
 
