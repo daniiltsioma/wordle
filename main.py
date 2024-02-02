@@ -62,12 +62,13 @@ while running:
             pos = pygame.mouse.get_pos()
             # handle mouse clicks on keyboard
             command = keyboard.find_button(pos)
-            if not command:
+            if not command:                     # click not on buttons
                 pass
             elif command == 'Enter':
-                print("Enter")
-                pass
-                # squares.enter(input)
+                if len(input_str) == 5:
+                    letter_themes = squares.check(word, ''.join(input_str))
+                    keyboard.apply_themes(letter_themes)
+                    input_str.clear()
             elif command == 'Back':
                 if len(input_str) > 0:
                     input_str.pop()
@@ -78,9 +79,10 @@ while running:
                     squares.enter(command)
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
-                letter_themes = squares.check(word, ''.join(input_str))
-                keyboard.apply_themes(letter_themes)
-                input_str.clear()
+                if len(input_str) == 5:
+                    letter_themes = squares.check(word, ''.join(input_str))
+                    keyboard.apply_themes(letter_themes)
+                    input_str.clear()
             if event.key == pygame.K_BACKSPACE:
                 if len(input_str) > 0:
                     input_str.pop()
