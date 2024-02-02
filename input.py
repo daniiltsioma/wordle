@@ -9,6 +9,7 @@ class Input:
     def __init__(self, window):
         self.window = window
         self.squares = []
+        self.current = 0  # current index
 
     def create(self):
         offset_top = 20
@@ -23,3 +24,11 @@ class Input:
     def render(self):
         for sq in self.squares:
             sq.render()
+
+    def enter(self, key):
+        self.squares[self.current].input(key)
+        self.current += 1
+
+    def back(self):
+        self.current -= 1
+        self.squares[self.current].clear()

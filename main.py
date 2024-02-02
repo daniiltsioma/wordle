@@ -47,7 +47,7 @@ keyboard.create()
 keyboard.render()
 
 # current input
-current_input = []
+input_str = []
 
 running = True
 while running:
@@ -62,10 +62,17 @@ while running:
             command = keyboard.find_button(pos)
             if not command:
                 pass
+            elif command == 'Enter':
+                pass
+                # squares.enter(input)
             elif command == 'Back':
-                input.pop()
+                if len(input_str) > 0:
+                    input_str.pop()
+                    squares.back()
             else:
-                input.append(command)
+                if len(input_str) < 5:
+                    input_str.append(command)
+                    squares.enter(command)
 
     pygame.display.update()
 
