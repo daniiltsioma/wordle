@@ -28,8 +28,8 @@ class Button():
         self.theme = self.themes[theme]
         self.font = pygame.font.SysFont('times new roman', font_size)
 
-    def render(self, window):
-        pygame.draw.rect(window, self.theme[0], [
+    def render(self):
+        pygame.draw.rect(self.window, self.theme[0], [
                          self.x, self.y, self.width, self.height])
 
         # render text in this font
@@ -41,4 +41,4 @@ class Button():
         text_left = self.x + (self.width - text_width) / 2
         text_top = self.y + (self.height - text_height) / 2
 
-        window.blit(text, (text_left, text_top))
+        self.window.blit(text, (text_left, text_top))

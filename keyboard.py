@@ -46,4 +46,4 @@ class Keyboard:
 
     def render(self):
         for btn in self.buttons:
-            btn.render(self.window)
+            btn.render()

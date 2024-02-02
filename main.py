@@ -32,8 +32,9 @@ pygame.display.set_caption("Wordle")
 fps = pygame.time.Clock()
 
 
-buttons: list[Button] = []
+# initialize keyboard
 keyboard = Keyboard(game_window)
+# create keyboard buttons
 keyboard.create()
 
 squares = []
@@ -54,11 +55,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    # q_button.render(game_window)
-    # for btn in buttons:
-    #     btn.render(game_window)
-    # enter_button.render(game_window)
-    # back_button.render(game_window)
+    # render keyboard
     keyboard.render()
 
     mouse = pygame.mouse.get_pos()
