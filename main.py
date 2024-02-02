@@ -1,5 +1,6 @@
 # libraries
 import pygame
+import random
 
 # components
 from keyboard import Keyboard
@@ -36,10 +37,13 @@ keyboard.create()
 # render keyboard
 keyboard.render()
 
+lines = open('words.txt').read().splitlines()
+
 # word
-word = "DANIK"
+word = random.choice(lines).upper()
 # current input
 input_str = []
+print(word)
 
 running = True
 while running:

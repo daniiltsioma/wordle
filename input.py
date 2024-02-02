@@ -33,20 +33,22 @@ class Input:
     def check(self, word, user_input):
         letter_dict = dict()
         letter_themes = dict()
+        letter_apps = dict()
         for l in word:
             if l in letter_dict:
                 letter_dict[l] += 1
             else:
                 letter_dict[l] = 1
+                letter_apps[l] = 0
         start = self.current - 5
-        letter_apps = dict()
         for i in range(5):
             if user_input[i] == word[i]:
                 self.squares[start + i].set_theme(1)
                 letter_themes[user_input[i]] = 1
-            elif user_input[i] in letter_dict and user_input[i] in letter_apps and letter_apps[user_input[i]] < letter_dict[user_input[i]]:
+            elif user_input[i] in letter_apps and letter_apps[user_input[i]] < letter_dict[user_input[i]]:
                 self.squares[start + i].set_theme(2)
                 letter_themes[user_input[i]] = 2
+                letter_apps[user_input[i]] += 1
             else:
                 self.squares[start + i].set_theme(3)
                 letter_themes[user_input[i]] = 3
