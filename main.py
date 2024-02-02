@@ -4,7 +4,7 @@ import pygame
 # components
 from button import Button
 from keyboard import Keyboard
-from squares import Squares
+from input import Input
 
 # set window dimensions
 window_x = 265
@@ -33,9 +33,11 @@ pygame.display.set_caption("Wordle")
 fps = pygame.time.Clock()
 
 # initialize input squares
-squares = Squares(game_window)
-# draw squares
-squares.draw()
+squares = Input(game_window)
+# create squares
+squares.create()
+# render squares
+squares.render()
 
 # initialize keyboard
 keyboard = Keyboard(game_window)
@@ -44,8 +46,8 @@ keyboard.create()
 # render keyboard
 keyboard.render()
 
-# app input
-input = []
+# current input
+current_input = []
 
 running = True
 while running:
