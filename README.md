@@ -1,5 +1,8 @@
 # Wordle
 
+## Demo
+Watch demo: https://youtu.be/YZugqbEjUGk
+
 ## Description
 This is my version of a popular Wordle game. The rules are simple. You have to guess a 5-letter word, and you are given 6 attempts to do that. After each attempt, you will receive hints:
 * If a letter is in the right position, it will light up green.\
