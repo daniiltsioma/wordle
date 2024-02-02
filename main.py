@@ -55,6 +55,11 @@ word = random.choice(words)
 input_str = []
 print(word)
 
+# track attempts
+attempts = 0
+# track the completion of the game
+complete = False
+
 
 def clear_message():
     surf = pygame.Surface((game_window.get_width(), 40), masks=(0, 0, 0))
@@ -75,10 +80,12 @@ def show_message(text):
 
 
 def handle_enter():
+    valid = False
     input_word = ''.join(input_str).upper()
     print(input_word)
     if len(input_word) == 5:
         if input_word in word_set:
+            valid = True
             # get letter colors
             correct, letter_themes = squares.check(word, ''.join(input_str))
             # apply colors to keyboard
@@ -86,10 +93,13 @@ def handle_enter():
             input_str.clear()
             if correct:
                 show_message('Great job!')
+                return True, valid
         else:
             show_message('Word not in the list')
     else:
         show_message('Too short')
+
+    return False, valid
 
 
 def handle_backspace():
@@ -113,16 +123,23 @@ while running:
             if not command:                     # click not on buttons
                 pass
             elif command == 'Enter':            # mouse click on Enter
-                handle_enter()
+                complete, valid = handle_enter()
+                if valid:
+                    attempts += 1
             elif command == 'Back':
                 handle_backspace()
             else:
                 if len(input_str) < 5:
                     input_str.append(command)
                     squares.enter(command)
-        if event.type == pygame.KEYDOWN:
+        if event.type == pygame.KEYDOWN and not complete:
             if event.key == pygame.K_RETURN:
-                handle_enter()
+                complete, valid = handle_enter()
+                if valid:
+                    attempts += 1
+                print(attempts)
+                if attempts == 6:
+                    show_message("Word: " + word)
             if event.key == pygame.K_BACKSPACE:
                 handle_backspace()
             if 97 <= event.key <= 122:
