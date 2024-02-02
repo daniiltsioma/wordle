@@ -24,3 +24,7 @@ This is my version of a popular Wordle game. The rules are simple. You have to g
   ```
 * Use keyboard or on-screen controls to enter letters.
 * Have fun!
+
+## Stack
+* Python
+* Pygame
